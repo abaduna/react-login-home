@@ -1,10 +1,14 @@
 import RoutesPrincial from "../src/routes/index"
 import './App.css';
+import { AuthProvider } from "./contexts/Auth";
 
 function App() {
   return (
     <div className="App">
-      <RoutesPrincial></RoutesPrincial>
+      <AuthProvider>
+    	<RoutesPrincial></RoutesPrincial>        
+      </AuthProvider>
+
     </div>
   );
 }

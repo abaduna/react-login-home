@@ -1,8 +1,17 @@
 
+import { useContext } from "react"
 
 function Dashboard() {
+
+  const {getUserInformarion} = useContext(AuthContex)
+  const {name}=getUserInformarion()
+
   return (
-    <div>Dashboard</div>
+    <>
+        <h2>Bienvenido: {name}</h2>
+        <div>Dashboard</div>
+    </>
+
   )
 }
 
