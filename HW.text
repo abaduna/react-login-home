@@ -1,0 +1,4 @@
+//tarea => armar un dashboard con un navbar (mostrar nombre del usuatrio y logout) 
+
+
+//como actualizar el state  cuando el usuario recarga la pagina (useEfect()=>{},[])
