@@ -4,13 +4,13 @@ import { initialValues, validationSchema } from "./schemas"
 import {Container,Grid,TextField,Button,Box} from "@mui/material"
 import * as  Yup from "yup"
 import { useContext, useState } from "react"
-import { AuthContex } from "../../contexts/Auth"
+import { AuthContex, useAuth } from "../../contexts/Auth"
 
 const Login =() =>{
   const history = useHistory()
   const [wrrongPassword,setWrrongPassword] = useState(false)
 
-  const {login} = useContext(AuthContex)
+  const {login} = useAuth()
 
   const handleLogin =({userName,password})=>{
     // validados con mi esquema.

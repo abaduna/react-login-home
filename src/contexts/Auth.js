@@ -1,10 +1,11 @@
 import {createContext, useContext,useRedecer} from "react"
 
-import {SET_AUTH} from "../action/auth"
+import {LOGOUT, SET_AUTH} from "../action/auth"
 import { authReducer, initialState } from "../reducers/AUTH.JS"
 
 
 import {jwt_decode} from "jwt-decode"
+import { API } from "../API"
 
 export const AuthContex = createContext()
 
@@ -17,6 +18,8 @@ export const AuthContex = createContext()
 
     const logout =({userName,password})=>{
         //PECION 
+        dispatch({type:LOGOUT})
+        localStorage.removeItem("auth")
     }
 
     const getUserInformarion =()=>jwt_decode(state.jwt)
@@ -28,11 +31,13 @@ export const AuthContex = createContext()
         // una vez que se ejecuta el metodo login
         //bakend verifica el user password enviado
         //si el user y pass es correcto crear un JWT 
+        API.post("/auth", {userName, password})
         if (userName ==="admin" && password ==="1234"){
           const {jkt}={
             jkt:"sfdgkusdghsdghisdgkhusdgh"
         };  
             setAuth({jkt})
+            localStorage.setItem("auth",jkt)
             return jkt 
         }else{
             return null
@@ -52,4 +57,11 @@ export const AuthContex = createContext()
         </Provider>
     ) 
     
+ }
+
+
+ export const useAuth =()=>{
+    const contex = useContext(AuthContex)
+    if(!contex) throw new Error("useAuth must be wrapped witn Authprovider")
+    return contex
  }
