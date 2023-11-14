@@ -1,14 +1,14 @@
 import axios from "axios"
 
 export const API = axios.create({
-    baseURL:"rsgoufsdgjhsdgh",
+    baseURL:"http://localhost:8000/",
 
 })
 //request  =>   enviar info
 //response =>   recibir informacion
 API.interceptors.request.use((config)=>{
     const jwt = localStorage.getItem("auth") ?? ""
-    config.headers[Authorization] = jwt
+    config.headers["Authorization"] = jwt
     return config
 })
 

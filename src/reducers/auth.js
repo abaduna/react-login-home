@@ -1,3 +1,4 @@
+import {LOGOUT, SET_AUTH} from "../action/auth"
 export const initialState = {
     isLoggeIn: false,
     jwt: null, //enviar en cada request HTTP cabecera + localStorage
@@ -18,9 +19,9 @@ export const authReducer =(state,action)=> {
             }
         }
         case LOGOUT:{
-            const {jkt} = action.payload
+            // const {jkt} = action.payload
             return {
-                initialState,
+                ...initialState,
                 loading: false,
             } 
         }

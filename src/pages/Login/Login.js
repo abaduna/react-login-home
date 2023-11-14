@@ -3,22 +3,24 @@ import {useFormik} from "formik"
 import { initialValues, validationSchema } from "./schemas"
 import {Container,Grid,TextField,Button,Box} from "@mui/material"
 import * as  Yup from "yup"
-import { useContext, useState } from "react"
-import { AuthContex, useAuth } from "../../contexts/Auth"
+import {  useState } from "react"
+import {  useAuth } from "../../contexts/Auth"
+
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Login =() =>{
-  const history = useHistory()
+  const navigate = useNavigate()
   const [wrrongPassword,setWrrongPassword] = useState(false)
 
   const {login} = useAuth()
 
-  const handleLogin =({userName,password})=>{
+  const handleLogin = async ({userName,password})=>{
     // validados con mi esquema.
     console.log(userName,password);
-    const jkt = login({userName,password})
-    if (!jkt) return   setWrrongPassword(true)
+    const jwt = await login({ userName, password }); // Espera a que se complete la llamada a la función login
+    if (!jwt) return   setWrrongPassword(true)
     setWrrongPassword(false)
-  history.push("/dasboard")
+    navigate("/dasboard"); // Redirige a "/dashboard" después de un inicio de sesión exitoso
 
 
   }

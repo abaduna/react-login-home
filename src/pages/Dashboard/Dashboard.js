@@ -1,6 +1,8 @@
 
 import { useContext } from "react"
+import { AuthContex } from '../../contexts/Auth'
 
+import NavBar from "../../components/Navbar"
 function Dashboard() {
 
   const {getUserInformarion} = useContext(AuthContex)
@@ -8,11 +10,12 @@ function Dashboard() {
 
   return (
     <>
+        <NavBar></NavBar>    
         <h2>Bienvenido: {name}</h2>
-        <div>Dashboard</div>
+
     </>
 
   )
 }
 
-export default Dashboard
+export default Dashboard 
