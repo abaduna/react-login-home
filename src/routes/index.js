@@ -6,6 +6,7 @@ import {
   } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
 
 
 // soluciones 1) hacer un renderizado condicional 2) armar un layout 3)Armar un Hoc 4) Armar un layout en una ruta privada
@@ -14,7 +15,11 @@ import Dashboard from "../pages/Dashboard/Dashboard";
         <Router>
             <Routes>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/dashoard" element={<Dashboard/>}/>
+                <PrivateRoute
+                path="/dashoard"
+                element={<Dashboard/>}
+                />
+                
                 <Route
                 path="*"
                 element={<Navigate to="/login" replace />} />

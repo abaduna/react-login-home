@@ -7,13 +7,13 @@ import NavBar from "../Navbar"
 HoC: es una funcion que recibe un componente y retorna un componente modificado
 
 */
-const whitLayout=(Component)  =>(props)=> {
+const Layout=({children})  =>(props)=> {
   return (
     <>
         <NavBar></NavBar>
-        <Component {...props}></Component>
+        {children}
     </>
   )
 }
 
-export default whitLayout
+export default Layout
