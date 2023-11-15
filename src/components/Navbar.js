@@ -8,11 +8,13 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAuth } from '../contexts/Auth';
 
 
 export default function NavBar() {
     // const authContext = useAuth();  // Corregir esta línea    
-    // const {getUserInformation,logout} = AuthContex
+    const {getUserInformation,logout} = useAuth()
+    const {name}=getUserInformation()
 
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -28,9 +30,9 @@ export default function NavBar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              News
+              {name}
             </Typography>
-            <Button color="inherit">Logout</Button>
+            <Button color="inherit" onClick={logout}>Salir</Button>
           </Toolbar>
         </AppBar>
       </Box>

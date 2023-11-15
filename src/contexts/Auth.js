@@ -21,6 +21,7 @@ export const AuthContex = createContext()
         //PECION 
         dispatch({type:LOGOUT})
         localStorage.removeItem("auth")
+        window.location.href ="/login"
     }
 
     const getUserInformation = () => jwtDecode(state.jwt); // Cambio aquí
