@@ -18,5 +18,5 @@ function Dashboard() {
 
   )
 }
-
-export default whitLayout(Dashboard) 
+export default Dashboard
+// export default whitLayout(Dashboard) 

@@ -23,7 +23,10 @@ export const AuthContex = createContext()
         localStorage.removeItem("auth")
         window.location.href ="/login"
     }
-
+    const isLoggedIn =()=> {
+      if (localStorage.getItem("auth")) return true
+      return false
+    }
     const getUserInformation = () => jwtDecode(state.jwt); // Cambio aquí
         
     
@@ -63,7 +66,7 @@ export const AuthContex = createContext()
         dispatch({type:SET_AUTH,payload:{jkt}})
     }
     return (
-        <Provider value={{state,setAuth,logout,login,getUserInformation}}>
+        <Provider value={{state,setAuth,logout,login,getUserInformation,isLoggedIn}}>
            {children} 
         </Provider>
     ) 

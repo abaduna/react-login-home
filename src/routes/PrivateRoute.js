@@ -3,8 +3,11 @@ import {
     Navigate,
   } from "react-router-dom";
 import Layout from "../components/Lauout/Layout";
+import { useAuth } from "../contexts/Auth";
 
-const PrivateRoute = ({isLoggedIn, element,...rest}) => 
+const PrivateRoute = ({ element,...rest}) => {
+    const {isLoggedIn} = useAuth()
+  return(
   <>
   <Layout></Layout>
   <Route
@@ -16,6 +19,10 @@ const PrivateRoute = ({isLoggedIn, element,...rest}) =>
 
 
   </>
+
+
+  )    
+}
 
 
 export default PrivateRoute
