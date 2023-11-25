@@ -1,16 +1,20 @@
 
-import { db, auth, storage } from "../../confic/Firebace";
+import { db} from "../../confic/Firebace";
 import { useEffect, useState } from 'react';
 import {Grid,Input,TextField} from "@mui/material"
 import { getDocs, collection, addDoc,deleteDoc,doc,updateDoc } from "firebase/firestore";
 import Button from '@mui/material/Button';
+import { auth  } from "../../confic/Firebace";
 
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Add from '@mui/icons-material/Add';
+
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 
 function Movies() {
   const [movieList,setMovieList]=useState([])
@@ -21,7 +25,7 @@ function Movies() {
     receivedAnOscar:false,
     id:""})
     const [fileUpload,setFileUpload]=useState(null)
-
+    const navigate = useNavigate();
     // colecion de referencis 
     const moviesCollectionRef = collection(db,"movies")
     const getMovieList = async () => {
@@ -36,10 +40,17 @@ function Movies() {
         
    
 }
+    const verificarSiElUsuarioEsAutenticado=()=>{
+      auth().onAuthStateChanged(function(user) {
+        if (!user) {
+          navigate("/login")
+        } 
+      });
+    }
     useEffect(() => {
        
             
-
+      verificarSiElUsuarioEsAutenticado()
          getMovieList();
     }, []);
     const handleInputChange = (e) => {
